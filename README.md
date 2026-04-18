@@ -30,7 +30,8 @@
 - Also if user is not logged in and page is refreshed again feed page appears while login page should appear.
 - If a user is logged in, then no api call should be make again to visit profile as we can get that from redux store. Implemented.
 
-
+- Implemented logout api - called logout api -> cleared the redu store -> redirected to login page. Tested if token is deleted from cookie.
+- Implemented handling of invalid credential when user logs in and displayed error message on ui.
 
 
 - Route and component structure:
