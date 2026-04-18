@@ -26,6 +26,11 @@
 - Used useNavigate() hook to redirect to Feed page once login is succesful.
 - Refactored code: added util/constants file and moved all auxilliary components to component folder.
 
+- If a user is logged in and page is refreshed, we get redirected to feed page, username and photo disappears. which shouldn't happen.
+- Also if user is not logged in and page is refreshed again feed page appears while login page should appear.
+- If a user is logged in, then no api call should be make again to visit profile as we can get that from redux store. Implemented.
+
+
 
 
 - Route and component structure:
