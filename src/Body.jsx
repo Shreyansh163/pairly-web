@@ -1,0 +1,17 @@
+import React from "react";
+import NavBar from "./NavBar";
+import { Outlet } from "react-router";
+import Footer from "./Footer";
+
+const Body = () => {
+  return (
+    <div>
+      <NavBar />
+      <Outlet />
+      {/* Outlet wraps all the children of Body mentined in App.jsx */}
+      <Footer />
+    </div>
+  );
+};
+
+export default Body;
