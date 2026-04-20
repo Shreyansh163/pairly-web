@@ -28,6 +28,16 @@ const Feed = () => {
     getFeed();
   }, []);
 
+  console.log(feed?.data);
+  if (!feed) return;
+
+  if (feed.data.length <= 0)
+    return (
+      <div className="flex justify-center items-center pt-10 h-140">
+        <h1 className="text-lg font-semibold">No new users found</h1>
+      </div>
+    );
+
   return (
     feed && (
       <div className="flex justify-center items-center my-18">
