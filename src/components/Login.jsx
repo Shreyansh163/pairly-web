@@ -8,9 +8,14 @@ import { useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("virat@gmail.com");
-  const [password, setPassword] = useState("Virat@123");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [firstName, setFirstname] = useState("");
+  const [lastName, setLastname] = useState("");
+  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,10 +36,51 @@ const Login = () => {
       setError(err?.response?.data);
     }
   };
+
+  const handleSignup = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/signup",
+        { firstName, lastName, emailId, password },
+        { withCredentials: true },
+      );
+      // console.log(res.data.data);
+      dispatch(addUser(res.data.data));
+      return navigate("/profile");
+
+      // setIsLoginForm(true);
+    } catch (error) {
+      setError(error?.response?.data);
+    }
+  };
+
   return (
     <div className="flex justify-center justify-items-center mt-40">
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-        <legend className="fieldset-legend">Login</legend>
+        <legend className="fieldset-legend">
+          {isLoginForm ? "Login" : "Signup"}
+        </legend>
+
+        {!isLoginForm && (
+          <>
+            <label className="label">First Name</label>
+            <input
+              type="text"
+              className="input"
+              placeholder="First name"
+              value={firstName}
+              onChange={e => setFirstname(e.target.value)}
+            />
+            <label className="label">Last Name</label>
+            <input
+              type="text"
+              className="input"
+              placeholder="Last name"
+              value={lastName}
+              onChange={e => setLastname(e.target.value)}
+            />
+          </>
+        )}
 
         <label className="label">Email</label>
         <input
@@ -55,9 +101,20 @@ const Login = () => {
         />
 
         <p className="text-red-500">{error}</p>
-        <button className="btn btn-neutral mt-4" onClick={handleLogin}>
-          Login
+        <button
+          className="btn btn-neutral mt-4"
+          onClick={isLoginForm ? handleLogin : handleSignup}
+        >
+          {isLoginForm ? "Login" : "Signup"}
         </button>
+        <p
+          className="cursor-pointer mx-auto py-2"
+          onClick={() => setIsLoginForm(value => !value)}
+        >
+          {!isLoginForm
+            ? "Already Registered? Login here"
+            : "New user? Signup here"}
+        </p>
       </fieldset>
     </div>
   );

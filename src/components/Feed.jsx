@@ -5,10 +5,12 @@ import { BASE_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
 import { useEffect } from "react";
 import UserCard from "./UserCard";
+import { useNavigate } from "react-router";
 
 const Feed = () => {
   const feed = useSelector(store => store.feed);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const getFeed = async () => {
     if (feed) return;
@@ -20,6 +22,7 @@ const Feed = () => {
 
       dispatch(addFeed(res.data));
     } catch (error) {
+      console.log(error);
       // TO DO
     }
   };
@@ -28,8 +31,8 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  console.log(feed?.data);
-  if (!feed) return;
+  // console.log(feed?.data);
+  if (!feed) return navigate("/login");
 
   if (feed.data.length <= 0)
     return (

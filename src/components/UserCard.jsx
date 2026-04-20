@@ -10,6 +10,7 @@ const UserCard = ({ user }) => {
 
   const handleSendRequest = async (status, userId) => {
     try {
+      // eslint-disable-next-line no-unused-vars
       const res = await axios.post(
         BASE_URL + "/request/send/" + status + "/" + userId,
         {},
@@ -33,12 +34,12 @@ const UserCard = ({ user }) => {
           {user.firstName} {user.lastName}
         </h2>
         <p>
-          {user.age}, {user.gender}
+          {user.age} {user.gender}
         </p>
         <p>{user.about}</p>
-        <div className="card-actions">
+        <div className="card-actions flex justify-between mt-2">
           <button
-            className="btn btn-warning"
+            className="btn btn-info w-25"
             onClick={() => handleSendRequest("ignored", user._id)}
           >
             Ignore

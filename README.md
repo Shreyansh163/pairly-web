@@ -49,6 +49,14 @@
 - Implemented request review with the help of accept and reject button. Created reviewRequest function in which called reviewRequest backend api where dynamically passed accepted/rejected along with id.
 - Updated removeRequest action in requestSlice and used in review request to remove the request once it is accepted or rejected.
 
+- Implemented sendRequest handling to interesetd or ignored.
+- Implemented logic to remove user from the feedReducer of the appStore once the sendRequest is handled. So that next user can be shown in the feed.
+
+- Implemented signup in login page with conditional redering of signup and login at the same route.
+- On signup, saved the user to store and navigated to profile page to fill out remaining details and update their profile.
+
+
+
 
 
 
