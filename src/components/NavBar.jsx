@@ -9,7 +9,7 @@ import { removeUser } from "../utils/userSlice";
 
 const NavBar = () => {
   const user = useSelector(store => store.user);
-  console.log(user);
+  // console.log(user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,7 +22,9 @@ const NavBar = () => {
 
       // redirect to login
       return navigate("/login");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,7 +58,10 @@ const NavBar = () => {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to="/connections">Connections</Link>
+              </li>
+              <li>
+                <Link to="/requests">Requests</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>
