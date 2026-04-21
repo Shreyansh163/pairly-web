@@ -32,7 +32,7 @@ const Feed = () => {
   }, []);
 
   // console.log(feed?.data);
-  if (!feed) return navigate("/login");
+  if (feed === null) return; //! Problem: if user is not logged in and user clicks on Tinder
 
   if (feed.data.length <= 0)
     return (
