@@ -5,12 +5,10 @@ import { BASE_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
 import { useEffect } from "react";
 import UserCard from "./UserCard";
-import { useNavigate } from "react-router";
 
 const Feed = () => {
   const feed = useSelector(store => store.feed);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const getFeed = async () => {
     if (feed) return;
