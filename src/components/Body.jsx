@@ -36,10 +36,11 @@ const Body = () => {
   }, []);
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <NavBar />
-      <Outlet />
-      {/* Outlet wraps all the children of Body mentined in App.jsx */}
+      <main className="flex-1">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
