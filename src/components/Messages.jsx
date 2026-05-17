@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { MessageSquare } from "lucide-react";
 import { BASE_URL } from "../utils/constants";
 import { getSocket } from "../utils/socket";
@@ -21,6 +21,7 @@ const formatTime = (iso) => {
 const Messages = () => {
   const [chats, setChats] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const fetchChats = async () => {
     try {
@@ -29,6 +30,10 @@ const Messages = () => {
       });
       setChats(res.data?.data || []);
     } catch (err) {
+      if (err.response?.status === 401) {
+        navigate("/login");
+        return;
+      }
       console.log(err);
       setError("Could not load messages");
       setChats([]);

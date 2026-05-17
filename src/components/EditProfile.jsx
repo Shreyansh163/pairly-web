@@ -144,7 +144,7 @@ const EditProfile = ({ user }) => {
       </div>
 
       {showToast && (
-        <div className="toast toast-top toast-center z-50">
+        <div className="toast toast-top toast-center z-[300]">
           <div className="alert border-none bg-green-500/90 text-white shadow-xl">
             <Check size={18} />
             <span>Profile updated</span>

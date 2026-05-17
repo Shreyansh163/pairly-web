@@ -129,7 +129,7 @@ const Login = () => {
             <Mail size={16} className="opacity-60" />
             <input
               type="email"
-              placeholder="you@dev.to"
+              placeholder="Email"
               value={emailId}
               onChange={e => setEmailId(e.target.value)}
               className="grow"

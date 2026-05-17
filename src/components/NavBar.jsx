@@ -31,9 +31,9 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-base-100/60 border-b border-white/10">
+    <nav className="sticky top-0 z-[200] backdrop-blur-xl bg-base-100/60 border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
+        <Link to={user ? "/" : "/login"} className="flex items-center gap-2 group">
           <span className="grid place-items-center w-9 h-9 rounded-xl bg-linear-to-br from-rose-500 to-fuchsia-600 shadow-lg shadow-rose-500/30 group-hover:scale-105 transition">
             <Flame size={20} className="text-white" strokeWidth={2.5} />
           </span>

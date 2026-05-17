@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { Check, X, Inbox } from "lucide-react";
 import { BASE_URL } from "../utils/constants";
 import { addRequest, removeRequest } from "../utils/requestSlice";
@@ -8,6 +9,7 @@ import { addRequest, removeRequest } from "../utils/requestSlice";
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const fetchRequests = async () => {
     try {
@@ -16,6 +18,10 @@ const Requests = () => {
       });
       dispatch(addRequest(res?.data?.data));
     } catch (error) {
+      if (error.response?.status === 401) {
+        navigate("/login");
+        return;
+      }
       console.log(error);
     }
   };

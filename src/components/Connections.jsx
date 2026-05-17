@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { MessageCircle, Users } from "lucide-react";
 import { BASE_URL } from "../utils/constants";
@@ -9,6 +9,7 @@ import { addConnection } from "../utils/connectionSlice";
 const Connections = () => {
   const connections = useSelector((store) => store.connections);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const fetchConnections = async () => {
     try {
@@ -17,6 +18,10 @@ const Connections = () => {
       });
       dispatch(addConnection(res?.data?.data));
     } catch (error) {
+      if (error.response?.status === 401) {
+        navigate("/login");
+        return;
+      }
       console.log(error);
     }
   };

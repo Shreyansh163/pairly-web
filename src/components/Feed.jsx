@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants";
 import { addFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
@@ -8,6 +9,7 @@ import UserCard from "./UserCard";
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const getFeed = async () => {
     if (feed) return;
@@ -17,6 +19,10 @@ const Feed = () => {
       });
       dispatch(addFeed(res.data));
     } catch (error) {
+      if (error.response?.status === 401) {
+        navigate("/login");
+        return;
+      }
       console.log(error);
     }
   };
